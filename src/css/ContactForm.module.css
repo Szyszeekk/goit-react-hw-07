@@ -1,0 +1,17 @@
+.form {
+  border: 1px solid;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
