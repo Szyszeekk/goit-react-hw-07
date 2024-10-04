@@ -5,7 +5,7 @@ const Contact = ({ contact, onDeleteContact }) => {
     <li className={css.listItem}>
       <div>
         {contact.name} <br />
-        {contact.number}
+        {contact.phone}
       </div>
       <button
         onClick={() => onDeleteContact(contact.id)}

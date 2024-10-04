@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import storeConfig from "../redux/store";
+import { deleteContact } from "../redux/contacts";
 import Contact from "./Contact";
 import css from "../css/ContactList.module.css";
 
@@ -18,9 +18,7 @@ const ContactList = () => {
         <Contact
           key={contact.id}
           contact={contact}
-          onDeleteContact={() =>
-            dispatch(storeConfig.actions.deleteContact(contact.id))
-          }
+          onDeleteContact={() => dispatch(deleteContact(contact.id))}
         />
       ))}
     </ul>

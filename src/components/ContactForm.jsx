@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import storeConfig from "../redux/store";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { addContact } from "../redux/contacts";
 import css from "../css/ContactForm.module.css";
 
 const ContactForm = () => {
@@ -13,7 +13,7 @@ const ContactForm = () => {
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    number: Yup.string()
+    phone: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
@@ -23,15 +23,15 @@ const ContactForm = () => {
     const newContact = {
       id: nanoid(),
       name: values.name,
-      number: values.number,
+      phone: values.phone,
     };
-    dispatch(storeConfig.actions.addContact(newContact));
+    dispatch(addContact(newContact));
     actions.resetForm();
   };
 
   return (
     <Formik
-      initialValues={{ name: "", number: "" }}
+      initialValues={{ name: "", phone: "" }}
       validationSchema={Validation}
       onSubmit={handleSubmit}>
       <Form className={css.form}>
@@ -41,9 +41,9 @@ const ContactForm = () => {
           <ErrorMessage name="name" as="span" />
         </div>
         <div className={css.input}>
-          <label htmlFor="number-id">Number</label>
-          <Field type="text" name="number" id="number-id" />
-          <ErrorMessage name="number" as="span" />
+          <label htmlFor="phone-id">Phone</label>{" "}
+          <Field type="text" name="phone" id="phone-id" />{" "}
+          <ErrorMessage name="phone" as="span" />{" "}
         </div>
         <button type="submit" className={css.button}>
           Add Contact
